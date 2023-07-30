@@ -1,0 +1,53 @@
+**Practice Lab 5: Conditionals and Lists in Vue**
+
+In this lab, we'll get hands-on experience with conditionals and list rendering in Vue.
+
+**Starting Code**
+
+The provided starting code sets up a basic Vue application with no specific functionality. 
+
+Navigate to `student/05-conditionals-lists`, then run `npm install` and `npm run dev`. Make sure that the app is visible in your browser.
+
+The tasks are outlined in the `App.vue` file.
+
+**Task 1**: Implement a feature to manage a list of tasks in a Vue app.
+
+**Task 2**: Add new tasks to the list when the "Add Task" button is clicked.
+
+**Task 3**: Show or hide the task list when the "Hide / Show List" button is clicked.
+
+**Instructions**
+
+1. In the script setup block, import `ref` from Vue. Define `tasks`, `newTask`, and `visible` as reactive variables using `ref`. Initialize `tasks` as an empty array, `newTask` as an empty string, and `visible` as true.
+
+2. Implement an `addTask` function that pushes a new task into the `tasks` array and clears the `newTask` string.
+
+3. Bind the value of the input field to `newTask` using the `v-model` directive.
+
+4. Bind the click event of the "Add Task" button to the `addTask` function using the `@click` directive.
+
+5. Render the list of tasks using the `v-for` directive. Conditionally render each task depending on the `visible` variable.
+
+6. Toggle the value of `visible` when the "Hide / Show List" button is clicked. Change the button caption depending on the `visible` value.
+
+Absolutely, here are a few additional tasks you can tackle if time allows:
+
+**If Time Allows**
+
+- **Modify Task Addition**: Instead of adding tasks directly, prevent adding if the input field is empty or only contains spaces. Show an alert or an error message in this case.
+
+- **Task Deletion**: Implement the ability to delete a task. You could add a button for each task in the list, and clicking it would remove that task from the array.
+
+- **Task Filtering**: Add a feature that filters the task list based on user input. As the user types in a separate input field, dynamically filter the tasks that are displayed in the list.
+
+- **Add Task ID**: Assign a unique identifier (ID) to each task and use it as a key in the `v-for` directive. This helps Vue keep track of each node's identity, which can be particularly useful when dealing with changes in the list.
+
+- **Task Completion**: Add a feature that allows marking tasks as completed. This could involve a checkbox for each task, and when checked, the task is visually differentiated (e.g., strikethrough, color change). 
+
+Remember to apply what you've learned about Vue's reactivity and directives to accomplish these tasks!
+
+**Note**: Remember to use `npm run dev` to start your development server and see your changes in the browser. Also, don't forget to use `npm run build` when you're ready to bundle your application for production. 
+
+
+
+This lab will help you get comfortable with using conditionals and rendering lists in Vue.js. Enjoy your coding!

@@ -21,7 +21,37 @@ function boxSelected(box) {
   and then add click handlers to the divs.
   - but what about styling? 
 	- we can use the style property
-	- or we can the style `:style={borderColor: boxASelected ? 'red' : '#ccc'}
+	- or we can the style `:style="{borderColor: boxASelected ? 'red' : '#ccc'}"
+	```
+	    <section id="styling">
+      <div class="demo" @click="boxSelected('A')" :style="{borderColor: boxASelected ? 'red' : '#ccc'}"></div>
+      <div class="demo" @click="boxSelected('B')" :style="{borderColor: boxBSelected ? 'red' : '#ccc'}"></div>
+      <div class="demo" @click="boxSelected('C')" :style="{borderColor: boxCSelected ? 'red' : '#ccc'}"></div>
+    </section>
+	```
+	- Binding inline styles works but they can have some disadvantages
+	- They often override and take control
+	- We'll often prefer to have a class based approach
+	```
+	 <div :class="boxASelected ? 'demo active' : 'demo'" @click="boxSelected('A')"></div>
+	 ```
+	 - Not the nicest to read!
+	 ```
+	  <div :class="{demo: true, active: boxASelected}" @click="boxSelected('A')"></div>
+		```
+	- More readable and more maintabble. But we can add the class that is always there seperately.
+	- We could use computer properties
+	```
+	const boxAClasses = computed(() => {
+  return {active: boxASelected.value}
+}) 
+```
+  - One other way to use classes is the array syntax
+	```
+	:class="['demo', {active: boxASelected}]"
+	```
+	- Just another one to be aware of
+
 
 
 Starting component

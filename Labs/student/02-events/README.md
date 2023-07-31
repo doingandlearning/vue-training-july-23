@@ -1,29 +1,47 @@
-# 02-events
+**Practice Lab 2: Event Handling and Interaction**
 
-This template should help get you started developing with Vue 3 in Vite.
+In this exercise, we are going to focus on handling events in Vue. 
 
-## Recommended IDE Setup
+**Starting Code**
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Please use the initial code provided. It sets up a Vue application with three main tasks. 
 
-## Customize configuration
+Navigate to student/02-events, run `npm install` and `npm run dev`. Check that you can see the app running.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+There are three tasks in the App.vue.
 
-## Project Setup
+**Task 1**: Show an alert when the button is clicked.
 
-```sh
-npm install
-```
+**Task 2**: Register the user input on "keydown" and output it in the paragraph.
 
-### Compile and Hot-Reload for Development
+**Task 3**: Repeat task 2 but only output the entered value if the ENTER key was pressed.
 
-```sh
-npm run dev
-```
+You can try doing them without instructions but if you'd like some instructions here you go.
 
-### Compile and Minify for Production
+**Instructions**
 
-```sh
-npm run build
-```
+1. In the script setup block, create a function named `showAlert` that uses `alert()` to display a message when called.
+
+2. Create two reactive variables `text` and `confirmedText` using `ref` from Vue. Set their initial value as an empty string.
+
+3. Create a function named `updateText` that takes an `event` as a parameter. Inside this function, update the `text` variable with the current value of the input field, which can be accessed using `event.target.value`.
+
+4. Similarly, create another function named `updateConfirmedText` that also takes an `event` as a parameter. This function should update the `confirmedText` variable with the current value of the input field.
+
+5. Now, you need to connect these functions to the DOM. For the button, bind the click event to the `showAlert` function using the `v-on:click` or `@click` shorthand directive.
+
+6. For the first input field, bind the keydown event to the `updateText` function. Use the `v-on:keydown` or `@keydown` shorthand directive.
+
+7. For the second input field, bind the keydown event to the `updateConfirmedText` function but this time, make sure the function only gets called when the ENTER key is pressed. You can achieve this using the `.enter` modifier on the keydown event like so: `v-on:keydown.enter`.
+
+8. Lastly, update the paragraphs to display the current values of `text` and `confirmedText`.
+
+**If Time Allows**
+
+- Explore different Vue event modifiers like `.stop`, `.prevent`, `.once`, and key modifiers. Modify the existing code to use these and see how they change the behavior.
+
+- Use Vue Devtools to inspect the changes to the reactive variables `text` and `confirmedText`.
+
+- Try to add some more elements to the interface and bind different events to them. For example, you could add a form and handle its submit event.
+
+**Note**: Remember to use `npm run dev` to start your development server and see your changes live in the browser. Also, use `npm run build` to bundle your application for production.

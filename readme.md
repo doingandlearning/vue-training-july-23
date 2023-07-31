@@ -1,3 +1,11 @@
+```bash
+npm init vue@latest
+
+cd ___
+npm install
+npm run dev
+```
+
 **Session 1: The Basics of Vue.js**
 
 Summary: Kick off your Vue journey with a deep understanding of Vue instance creation, interpolation, and the application of Vue directives.

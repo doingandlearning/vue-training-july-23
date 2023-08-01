@@ -55,7 +55,7 @@ Topics:
 - Simplifying your code with computed properties
 - Understanding the array syntax for dynamic classes
 
-**Session 5: Conditionals and Reactivity - Rendering Conditional**
+**Session 5: Conditionals and Lists**
 
 Summary: In this session, we will dive deep into the conditionals and reactivity in Vue.js. We will explore how to use `v-if`, `v-else` and `v-for` directives to render content conditionally and list rendering. We will also look at how to interact with lists, such as adding and removing items, and the importance of keys when working with lists.
 

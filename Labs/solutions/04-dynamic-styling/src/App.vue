@@ -18,9 +18,11 @@ function toggleVisible() {
       <!-- The entered class should be added to the below paragraph -->
       <input type="text" v-model="userClass"/>
       <!-- (available classes: "user1", "user2") -->
-      <p :class="[userClass, {visible: visible}, {hidden: !visible}]">
-       Style me!
-      </p>
+      <Transition name="fade">
+        <p :class="[userClass]" v-if="visible">
+          Style me!
+        </p>
+      </Transition>
       <button @click="toggleVisible">Toggle Paragraph</button>
       <!-- 2) Use the "visible" and "hidden" classes to show/ hide the above paragraph -->
       <!-- Clicking the button should toggle between the two options -->
@@ -32,6 +34,15 @@ function toggleVisible() {
 </template>
 
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s ease-out;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+
 * {
   box-sizing: border-box;
 }

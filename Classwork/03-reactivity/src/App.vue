@@ -1,12 +1,13 @@
 <script setup>
-import { ref } from "vue"
+import { ref, computed, watch } from "vue"
 
 const counter = ref(0)
 
 const name = ref("")
+const lastName = ref("")
 
-function setName(event, lastName) {
-  name.value = event.target.value + ' ' + lastName;
+function setName(event) {
+  name.value = event.target.value;
 }
 function add(num) {
   counter.value = counter.value + num;
@@ -14,6 +15,36 @@ function add(num) {
 function reduce(num) {
   counter.value = counter.value - num;
 }
+
+// function showFullName() {
+//   // return name.value + " " + lastName.value
+//   // template literal
+//   return `${name.value} ${lastName.value}`
+// }
+
+// caching, limiting updates
+const showFullName = computed(()  =>{
+  // return name.value + " " + lastName.value
+  // template literal
+  return `${name.value} ${lastName.value}`
+}
+)
+// side effects
+watch(counter, () => {
+  if(counter.value % 3 === 0) {
+    counter.value = 0
+  }
+})
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <template>
@@ -25,8 +56,9 @@ function reduce(num) {
       <button v-on:click="add(10)">Add 10</button>
       <button v-on:click="reduce(5)">Subtract 5</button>
       <p>Result: {{ counter }}</p>
-      <input type="text" v-on:input="setName($event, 'Cunningham')">
-      <p>Your Name: {{ name }}</p>
+      <input type="text" v-model="name">
+      <input type="text" v-model="lastName">
+      <p>Your Name: {{ showFullName }}</p>
     </section>
 </template>
 

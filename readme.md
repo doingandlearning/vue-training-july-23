@@ -123,7 +123,7 @@ Topics:
 - Programmatic navigation
 
 
-**Session 11: State Management with Vuex**
+**Session 11: State Management with Vuex** 
 
 Summary: Grasp the concepts of state management in Vue.js applications with Vuex, including state definition, mutations, and actions.
 

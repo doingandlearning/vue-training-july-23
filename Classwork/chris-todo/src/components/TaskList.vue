@@ -7,18 +7,31 @@
         tasks: Array,
         showhide: Boolean
     })
+		let viewFilter = ref('all')
 
     const openItems = computed(() => props.tasks.filter((item) => !item.completed))
     const completedItems = computed(() => props.tasks.filter((item) => item.completed))
-		const itemsToView = ref(props.tasks)
+		const itemsToView = computed(() => {
+  switch(viewFilter.value) {
+    case 'all':
+      return props.tasks
+    case 'open':
+      return openItems.value
+    case 'completed':
+      return completedItems.value
+  }
+})
+
+const setViewFilter = (filter) => {
+  viewFilter.value = filter
+}
 </script>
 
 
 <template>
-    <button @click="itemsToView = openItems">Open Items</button>
-    <button @click="itemsToView = completedItems">Completed Items</button>
-    <button @click="itemsToView = tasks">All Items</button>
-
+ <button @click="setViewFilter('open')">Open Items</button>
+<button @click="setViewFilter('completed')">Completed Items</button>
+<button @click="setViewFilter('all')">All Items</button>
 
     <ul v-show="props.showhide">
         <Task v-for="item in itemsToView" :item="item"></Task>

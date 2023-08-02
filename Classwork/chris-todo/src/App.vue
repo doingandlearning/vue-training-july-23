@@ -1,5 +1,5 @@
 <script setup>
-  import { computed, ref, onMounted, onBeforeMount } from "vue"
+  import { computed, ref, onMounted, watch } from "vue"
   import TaskList from "./components/TaskList.vue"
   import axios from "axios"
 
@@ -7,24 +7,20 @@
   const taskList = ref([])
   const newTask = ref('')
   const showHide = ref(true);
-  const isLoading = ref(true)
 
   function addTask() {
     taskList.value.push({name: newTask.value, complete: false})
   }
 
-
-  onBeforeMount(async () => {
+  onMounted(async () => {
     try {
       const response = await axios.get("https://jsonplaceholder.typicode.com/todos")
       taskList.value = response.data
-      isLoading.value = false
     } catch (error) {
       console.log(error)
       errorMessage.value = "Error cant get data!"
     }
   })
-
 
 </script>
 
@@ -36,12 +32,11 @@
     <section id="assignment">
       <h2>Current Items</h2>
 
-
       <input type="text" v-model="newTask" @keyup.enter="addTask(taskList)">
       <button @click="addTask()">Add Task</button>
    
       <!-- <transition> -->
-        <TaskList v-if="!isLoading" :tasks="taskList" :showhide="showHide"></TaskList>
+        <TaskList :tasks="taskList" :showhide="showHide"></TaskList>
       <!-- </transition> -->
 
 

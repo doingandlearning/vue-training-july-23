@@ -1,7 +1,10 @@
 <script setup>
-import ProductList from "./components/ProductList.vue"
+
 import { ref, onMounted, watch } from "vue"
 import axios from "axios"
+import ProductList from "./components/ProductList.vue";
+const productList = ref(null)
+const loadProducts = async () => productList.value = () => import('./components/ProductList.vue')
 
 const campingStoreItems = ref([])
 const isLoading = ref(true)
@@ -10,7 +13,7 @@ onMounted(async () => {
   try {
     const response = await axios.get("https://gist.githubusercontent.com/doingandlearning/b03d063608da691327356fd994f9d2b9/raw/4de984cd50b30d7b6b1bea42e854b64580f0b436/gistfile1.json")
     campingStoreItems.value = response.data
-      isLoading.value = false
+    isLoading.value = false
   } catch (error) {
     console.log(error)
     errorMessage.value = "Had trouble getting your products, please try again later."
@@ -33,7 +36,9 @@ function handleAddItemToCart(name, value) {
 <template>
   <p v-if="isLoading">Loading ....</p>
   <p>{{ cart }}</p>
-  <ProductList 
+  <button @click="loadProducts()">Load</button>
+  <ProductList
+     :is="productList"
      v-if="!isLoading" 
      :products="campingStoreItems" 
      :title="title"

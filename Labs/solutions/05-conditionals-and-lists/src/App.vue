@@ -1,7 +1,7 @@
 <script setup>
 import {ref } from "vue"
 
-const tasks = ref([])
+const tasks = ref(['Learn Vue'])
 const newTask = ref("")
 const visible = ref(true)
 function addTask() {
